@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Accounting of finances</string>
+    <string name="accounting_of_finances">Accounting of finances</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create account</string>
+    <string name="hint_username">Username</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_bottom_txt"></string>
+    <string name="name_empty_error">Empty Username</string>
+    <string name="email_empty_error">Empty Email</string>
+    <string name="email_invalid_error">Invalid Email</string>
+    <string name="password_short_error">Password should be at least 8 symbols</string>
+</resources>

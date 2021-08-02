@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1015390270619",
+    "project_id": "accounting-of-finances-ba977",
+    "storage_bucket": "accounting-of-finances-ba977.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015390270619:android:aefbfd4eaf94f796c5423e",
+        "android_client_info": {
+          "package_name": "io.teachmeskills.an03onl_accountingoffinancesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015390270619-nd301v7ebaevpbq8fgvabqcrhuamm4l9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-cgPHKXf7iFIuUdodoZQiMIeWSBYwcI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015390270619-nd301v7ebaevpbq8fgvabqcrhuamm4l9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
