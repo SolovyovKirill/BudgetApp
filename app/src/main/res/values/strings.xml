@@ -1,16 +1,54 @@
 <resources>
-    <string name="app_name">Accounting of finances</string>
-    <string name="accounting_of_finances">Accounting of finances</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
+
+    <string-array name="tags_expenses">
+        <item>Transport</item>
+        <item>Food</item>
+        <item>Utilities</item>
+        <item>Insurance</item>
+        <item>Housing</item>
+        <item>Education</item>
+    </string-array>
+
+    <string-array name="currency">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>BYN</item>
+        <item>RUB</item>
+        <item>PL</item>
+    </string-array>
+    <string name="add_expense">Add expense</string>
+    <string name="you_spent">You spent</string>
+    <string name="text_month">MAY</string>
+    <string name="day_number">29</string>
+    <string name="title_hint">Title</string>
+    <string name="select_tags">Select tags</string>
+    <string name="notes_hint">Notes</string>
+    <string name="no_tags">No tags</string>
+    <string name="notes_title">Notes</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="today">Today</string>
+    <string name="this_week">This week</string>
+    <string name="this_month">This month</string>
+    <string name="all_time">All time</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="filter">Filter</string>
+    <string name="delete_all_expenses">Delete all expenses</string>
+    <string name="save">Save</string>
+    <string name="confirm">Confirm</string>
+    <string name="search_currency">Search currency</string>
+    <string name="amount">Amount</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
-    <string name="create_account">Create account</string>
-    <string name="hint_username">Username</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="sign_in_bottom_txt"></string>
-    <string name="name_empty_error">Empty Username</string>
-    <string name="email_empty_error">Empty Email</string>
-    <string name="email_invalid_error">Invalid Email</string>
-    <string name="password_short_error">Password should be at least 8 symbols</string>
+    <string name="username">Username</string>
+    <string name="add_tag">ADD TAG</string>
+    <string name="close">close</string>
+    <string name="tag">Tag</string>
+    <string name="tag_hint">Tag</string>
+    <string name="success_expense_saved">Success expense saved</string>
+    <string name="settings">settings</string>
+    <string name="notification">notification</string>
 </resources>

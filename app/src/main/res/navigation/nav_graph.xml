@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+
+    <fragment
+        android:id="@+id/addExpenseFragment"
+        android:name="io.teachmeskills.presentation.view.addexpense.AddExpenseFragment"
+        android:label="AddExpenseFragment"
+        tools:layout="@layout/fragment_add_expense">
+        <action
+            android:id="@+id/action_addExpenseFragment_to_tagSelectionFragment"
+            app:destination="@id/tagSelectionFragment" />
+        <action
+            android:id="@+id/action_addExpenseFragment_to_currencySelectionFragment"
+            app:destination="@id/currencySelectionFragment" />
+        <action
+            android:id="@+id/action_addExpenseFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currencySelectionFragment"
+        android:name="io.teachmeskills.presentation.view.currencyselection.CurrencySelectionFragment"
+        android:label="CurrencySelectionFragment"
+        tools:layout="@layout/fragment_currency_selection"/>
+    <fragment
+        android:id="@+id/detailExpenseFragment"
+        android:name="io.teachmeskills.presentation.view.detailexpens.DetailExpenseFragment"
+        android:label="DetailExpenseFragment"
+        tools:layout="@layout/fragment_detail_expense">
+        <action
+            android:id="@+id/action_detailExpenseFragment_to_addExpenseFragment"
+            app:destination="@id/addExpenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="io.teachmeskills.presentation.view.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_addExpenseFragment"
+            app:destination="@id/addExpenseFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailExpenseFragment"
+            app:destination="@id/detailExpenseFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tagSelectionFragment"
+        android:name="io.teachmeskills.presentation.view.tagselection.TagSelectionFragment"
+        android:label="TagSelectionFragment"
+        tools:layout="@layout/fragment_tag_selection"/>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="io.teachmeskills.presentation.view.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting">>
+        <action
+            android:id="@+id/action_settingFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="io.teachmeskills.presentation.view.notification.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
+</navigation>
