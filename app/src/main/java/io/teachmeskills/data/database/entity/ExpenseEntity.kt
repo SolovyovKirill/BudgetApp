@@ -1,14 +1,16 @@
 package io.teachmeskills.data.database.entity
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-@Entity(tableName = "expenses", primaryKeys = ["amount", "title"])
-data class Expense(
-//    @PrimaryKey(autoGenerate = true)
-//    @ColumnInfo(name="id")
-//    var id: Int = 0,
+@Parcelize
+@Entity(tableName = "expenses")
+data class ExpenseEntity(
+
     @ColumnInfo(name="title")
     var title: String,
     @ColumnInfo(name="currency")
@@ -21,7 +23,10 @@ data class Expense(
     var date: String,
     @ColumnInfo(name="note")
     var note: String,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="id")
+    var id: Int = 0,
 
-){
+):Parcelable{
 
 }

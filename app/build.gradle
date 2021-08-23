@@ -79,4 +79,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
 
+    // Retrofit 2 + OkHTTP3
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'// retrofit extension for converting
+    implementation("com.squareup.okhttp3:okhttp:4.9.1") // interceptor client
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1") // logging interceptor
+
+    implementation("org.threeten:threetenbp:1.5.1")
+
 }

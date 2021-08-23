@@ -1,9 +1,9 @@
 package io.teachmeskills.domain.usecase.insertexpense
 
-import io.teachmeskills.data.database.entity.Expense
+import io.teachmeskills.data.database.entity.ExpenseEntity
 
 interface InsertExpenseUseCase {
 
-    suspend fun insertExpense(expense: Expense)
+    suspend fun insertExpense(expenseEntity: ExpenseEntity)
 
 }

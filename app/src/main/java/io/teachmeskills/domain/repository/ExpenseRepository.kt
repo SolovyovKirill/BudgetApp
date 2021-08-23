@@ -1,22 +1,22 @@
 package io.teachmeskills.domain.repository
 
 
-import io.teachmeskills.data.database.entity.Expense
+import io.teachmeskills.data.database.entity.ExpenseEntity
 import kotlinx.coroutines.flow.Flow
 
 
 interface ExpenseRepository {
 
-    fun getExpenseList() : Flow<List<Expense>>
+    fun getExpenseList() : Flow<List<ExpenseEntity>>
 
-    suspend fun insertExpense(expense: Expense)
+    suspend fun insertExpense(expenseEntity: ExpenseEntity)
 
-    suspend fun updateExpense(expense: Expense)
+    suspend fun updateExpense(expenseEntity: ExpenseEntity)
 
-    suspend fun deleteExpense(expense: Expense)
+    suspend fun deleteExpense(expenseEntity: ExpenseEntity)
 
-    suspend fun getExpenseList(date: String) : List<Expense>
+    suspend fun getExpenseList(data: String) : Flow<List<ExpenseEntity>>
 
-//    suspend fun getExpenseById(expense: Expense): Expense?
+    fun getExpenseById(id: Int): Flow<ExpenseEntity>
 
 }

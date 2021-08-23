@@ -12,20 +12,9 @@
         android:label="AddExpenseFragment"
         tools:layout="@layout/fragment_add_expense">
         <action
-            android:id="@+id/action_addExpenseFragment_to_tagSelectionFragment"
-            app:destination="@id/tagSelectionFragment" />
-        <action
-            android:id="@+id/action_addExpenseFragment_to_currencySelectionFragment"
-            app:destination="@id/currencySelectionFragment" />
-        <action
             android:id="@+id/action_addExpenseFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/currencySelectionFragment"
-        android:name="io.teachmeskills.presentation.view.currencyselection.CurrencySelectionFragment"
-        android:label="CurrencySelectionFragment"
-        tools:layout="@layout/fragment_currency_selection"/>
     <fragment
         android:id="@+id/detailExpenseFragment"
         android:name="io.teachmeskills.presentation.view.detailexpens.DetailExpenseFragment"
@@ -34,6 +23,12 @@
         <action
             android:id="@+id/action_detailExpenseFragment_to_addExpenseFragment"
             app:destination="@id/addExpenseFragment" />
+        <action
+            android:id="@+id/action_detailExpenseFragment_to_editExpenseFragment"
+            app:destination="@id/editExpenseFragment" />
+        <action
+            android:id="@+id/action_detailExpenseFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -51,15 +46,10 @@
             app:destination="@id/settingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/tagSelectionFragment"
-        android:name="io.teachmeskills.presentation.view.tagselection.TagSelectionFragment"
-        android:label="TagSelectionFragment"
-        tools:layout="@layout/fragment_tag_selection"/>
-    <fragment
         android:id="@+id/settingFragment"
         android:name="io.teachmeskills.presentation.view.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting">>
+        tools:layout="@layout/fragment_setting">
         <action
             android:id="@+id/action_settingFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
@@ -69,4 +59,14 @@
         android:name="io.teachmeskills.presentation.view.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification"/>
+    <fragment
+        android:id="@+id/editExpenseFragment"
+        android:name="io.teachmeskills.presentation.view.editexpense.EditExpenseFragment"
+        android:label="EditExpenseFragment"
+        tools:layout="@layout/fragment_edit_expense">
+        <action
+            android:id="@+id/action_editExpenseFragment_to_detailExpenseFragment"
+            app:destination="@id/detailExpenseFragment" />
+
+    </fragment>
 </navigation>

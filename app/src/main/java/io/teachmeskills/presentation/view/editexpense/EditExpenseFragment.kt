@@ -1,7 +1,8 @@
-package io.teachmeskills.presentation.view.addexpense
+package io.teachmeskills.presentation.view.editexpense
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,34 +11,56 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import io.teachmeskills.an03onl_accountingoffinancesapp.R
-import io.teachmeskills.an03onl_accountingoffinancesapp.databinding.FragmentAddExpenseBinding
+import io.teachmeskills.an03onl_accountingoffinancesapp.databinding.FragmentEditExpenseBinding
 import io.teachmeskills.data.database.entity.ExpenseEntity
+import io.teachmeskills.presentation.view.addexpense.AddExpenseFragment
 import io.teachmeskills.utils.Constants
 import io.teachmeskills.presentation.viewmodel.ExpenseViewModel
-import kotlinx.android.synthetic.main.fragment_add_expense.view.*
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.currency
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.et_amount
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.et_notes
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.et_title
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.tv_date
+import kotlinx.android.synthetic.main.fragment_edit_expense.view.tv_tag_expense
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
 import java.util.*
 
-class AddExpenseFragment : Fragment() {
 
-    private lateinit var binding: FragmentAddExpenseBinding
-    //    private val viewModel: AddExpenseFragmentViewModel by viewModel()
+class EditExpenseFragment : Fragment() {
+
+    private lateinit var binding: FragmentEditExpenseBinding
+//    private val viewModel: EditExpenseViewModel by viewModel()
     private val viewModel: ExpenseViewModel by viewModel()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddExpenseBinding.inflate(layoutInflater, container, false)
+        binding = FragmentEditExpenseBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
+    private var expenseEntity: ExpenseEntity? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        expenseEntity = arguments?.getParcelable<ExpenseEntity>("expense")
         initViews()
-        exitFragment()
+        loadData(expenseEntity!!)
+
+
+    }
+
+    private fun loadData(expenseEntity: ExpenseEntity) = with(binding) {
+        etTitle.setText(expenseEntity.title)
+        etAmount.setText(expenseEntity.amount.toString())
+        currency.setText(expenseEntity.currency, false)
+        tvTagExpense.setText(expenseEntity.tag, false)
+        tvDate.setText(expenseEntity.date)
+        etNotes.setText(expenseEntity.note)
     }
 
     private fun initViews() {
@@ -45,11 +68,13 @@ class AddExpenseFragment : Fragment() {
         setTagExpense()
         selectedDate()
 
+
         with(binding) {
 
             btnSaveExpense.setOnClickListener {
                 binding.layoutContainer.apply {
-                    val (title, currency, amount, tag, date, note) = getExpenseContent()
+                    val (title, currency, amount, tag, date, note)
+                    = getExpenseContent()
 
                     when {
                         title.isEmpty() -> {
@@ -71,14 +96,12 @@ class AddExpenseFragment : Fragment() {
                             this.et_notes.error = "Note must note be empty"
                         }
                         else -> {
-                            viewModel.insertExpense(getExpenseContent()).run {
+                            viewModel.updateExpense(getExpenseContent()).also {
                                 Toast.makeText(
                                     requireContext(),
-                                    getString(R.string.success_expense_saved),
+                                    getString(R.string.success_expense_update),
                                     Toast.LENGTH_LONG
-                                ).show()
-
-                                findNavController().popBackStack()
+                                ).show().also { findNavController().popBackStack() }
                             }
                         }
                     }
@@ -89,6 +112,7 @@ class AddExpenseFragment : Fragment() {
     }
 
     private fun getExpenseContent(): ExpenseEntity = binding.layoutContainer.let {
+        val id = expenseEntity!!.id
         val title = it.et_title.text.toString()
         val amount = it.et_amount.text.toString().toDouble()
         val currency = it.currency.text.toString()
@@ -96,7 +120,16 @@ class AddExpenseFragment : Fragment() {
         val date = it.tv_date.text.toString()
         val note = it.et_notes.text.toString()
 
-        return ExpenseEntity(title, currency, amount, tag, date, note)
+        return ExpenseEntity(
+
+            title = title,
+            currency = currency,
+            amount = amount,
+            tag = tag,
+            date = date,
+            note = note,
+            id = id
+        )
     }
 
     private fun selectedDate() {
@@ -115,8 +148,9 @@ class AddExpenseFragment : Fragment() {
                     _calendar.set(Calendar.MONTH, month)
                     _calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                    binding.tvDate.text = dateFormatter.format(calendar.time)
-
+                    Log.e("Date ", "date: ${AddExpenseFragment.dateFormatter.format(calendar.time)}")
+                    binding.tvDate.text = AddExpenseFragment.dateFormatter.format(calendar.time)
+                    Log.e("Date ", "date: ${binding.tvDate.text}")
                 }, year, month, dayOfMonth
             )
             datePickerDialog.show()
@@ -133,16 +167,6 @@ class AddExpenseFragment : Fragment() {
         val tags = Constants.transactionTags
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_tag1, tags)
         binding.tvTagExpense.setAdapter(arrayAdapter)
-    }
-
-    private fun exitFragment() {
-        binding.toolbar.btn_exit_add_expense.setOnClickListener {
-            it.findNavController().popBackStack()
-        }
-    }
-
-    companion object {
-        val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     }
 
 }

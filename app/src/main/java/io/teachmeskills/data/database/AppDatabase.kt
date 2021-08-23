@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import io.teachmeskills.data.database.dao.ExpenseDao
-import io.teachmeskills.data.database.entity.Expense
+import io.teachmeskills.data.database.entity.ExpenseEntity
 
 @Database(
-    entities = [Expense::class], version = 1
+    entities = [ExpenseEntity::class], version = 1
 )
 abstract class AppDatabase: RoomDatabase() {
 

@@ -49,6 +49,18 @@
     <string name="tag">Tag</string>
     <string name="tag_hint">Tag</string>
     <string name="success_expense_saved">Success expense saved</string>
+    <string name="success_expense_update">Success expense update</string>
+    <string name="success_expense_delete">Success expense delete</string>
+    <string name="error">Error forever</string>
     <string name="settings">settings</string>
     <string name="notification">notification</string>
+    <string name="amountT">Amount:</string>
+    <string name="delete_expense_message">Are you sure you want to delete expense?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_expenses">No expenses</string>
+
+    <!-- Shared Preferences -->
+    <string name="key_date_range" translatable="false">date_range</string>
+
 </resources>

@@ -26,52 +26,16 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/you_spent"
-        android:textAppearance="?attr/textAppearanceSubtitle1"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TextView
-        android:id="@+id/tv_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textAppearance="?attr/textAppearanceHeadline4"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/tv_symbol"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        tools:text="$ 10" />
-
-    <TextView
-        android:id="@+id/tv_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
+    <include
+        android:id="@+id/container_total_expense"
+        layout="@layout/item_summary"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_amount"
-        tools:text="(Polish zloty PLN)" />
-
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_date_range"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:chipIcon="@drawable/ic_arrow_drop_down_24dp"
-        app:chipIconEnabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:text="All time" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+    </include>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_new_expense"
@@ -90,11 +54,11 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/container_total_expense"
+        tools:listitem="@layout/item_expense"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
