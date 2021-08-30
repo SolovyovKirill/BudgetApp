@@ -16,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,6 +25,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String","API_KEY", '"X-CMC_PRO_API_KEY: 6cc620b6-7c59-40b6-8906-5c556cfd51ae"'
+            buildConfigField "String","BASE_URL", '"https://pro-api.coinmarketcap.com/"'
+
+        }
+
+        debug {
+            buildConfigField "String","BASE_URL", '"https://pro-api.coinmarketcap.com/"'
+            buildConfigField "String","API_KEY", '"X-CMC_PRO_API_KEY: 6cc620b6-7c59-40b6-8906-5c556cfd51ae"'
         }
     }
     compileOptions {

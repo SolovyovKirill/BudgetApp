@@ -1,11 +1,9 @@
 package io.teachmeskills.presentation.view.notification
 
 import android.annotation.SuppressLint
+import android.app.*
 
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.content.Context
 import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.os.Build
@@ -15,13 +13,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import io.teachmeskills.MainActivity
+import io.teachmeskills.an03onl_accountingoffinancesapp.R
 import io.teachmeskills.an03onl_accountingoffinancesapp.databinding.FragmentNotificationBinding
-import io.teachmeskills.notification.NotificationReceiver
-import io.teachmeskills.notification.NotificationReceiver.Companion.NOTIFICATION_CHANNEL
+import io.teachmeskills.presentation.view.addexpense.AddExpenseFragment
+import io.teachmeskills.presentation.view.notification.NotificationReceiver.Companion.NOTIFICATION_CHANNEL
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -32,7 +36,6 @@ class NotificationFragment : Fragment() {
     private lateinit var calendar: Calendar
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,12 +53,15 @@ class NotificationFragment : Fragment() {
 
         binding.btnSetNot.setOnClickListener {
             setNotif()
+            findNavController().navigate(R.id.action_notificationFragment_to_mainFragment)
         }
 
-        binding.btnSetTime.setOnClickListener {
+        binding.etDate.setOnClickListener {
             showTimePicker()
         }
     }
+
+
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -65,23 +71,11 @@ class NotificationFragment : Fragment() {
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(NOTIFICATION_CHANNEL, name, importance)
             channel.description = description
-            val notificationManager = getSystemService(requireContext(),NotificationManager::class.java)
+            val notificationManager =
+                getSystemService(requireContext(), NotificationManager::class.java)
             notificationManager!!.createNotificationChannel(channel)
         }
-
     }
-
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun createChannel(notificationManager: NotificationManager) {
-//        if (notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL) == null) {
-//            val channel = NotificationChannel(
-//                NOTIFICATION_CHANNEL,
-//                NOTIFICATION_CHANNEL,
-//                NotificationManager.IMPORTANCE_DEFAULT
-//            )
-//            notificationManager.createNotificationChannel(channel)
-//        }
-//    }
 
     private fun setNotif() {
 
@@ -90,6 +84,15 @@ class NotificationFragment : Fragment() {
         alarmManager = requireContext().getSystemService(ALARM_SERVICE) as AlarmManager
 
         val intent = Intent(requireContext(), NotificationReceiver::class.java)
+
+
+        val etText = binding.etTextNotification.text.toString()
+        val etTitle = binding.etTitleNotification.text.toString()
+
+
+        intent.putExtra(TEXT, etText)
+        intent.putExtra(TITLE, etTitle)
+
 
         pendingIntent = PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
 
@@ -100,24 +103,21 @@ class NotificationFragment : Fragment() {
         )
 
         Toast.makeText(requireContext(), "Notif set", Toast.LENGTH_LONG).show()
-
-//        calendar = Calendar.getInstance()
-//
-//        if (calendar.getTime().compareTo(Date()) < 0)
-//            calendar.add(Calendar.DAY_OF_MONTH, 1)
-//        val intent = Intent(requireContext(), NotificationReceiver::class.java)
-//        alarmManager = requireContext().getSystemService(ALARM_SERVICE) as AlarmManager
-//        pendingIntent = PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-//
-//
-//        if (alarmManager != null) {
-//            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
-//                AlarmManager.INTERVAL_DAY, pendingIntent)
-//        }
     }
 
     @SuppressLint("Range")
     private fun showTimePicker() {
+
+//        val calendar = Calendar.getInstance()
+//        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePivker, hourOfDay, minute ->
+//            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+//            calendar.set(Calendar.MINUTE, minute)
+//
+//            binding.etDate.setText(SimpleDateFormat("HH:mm").format(calendar.time).toString())
+//        }
+//        TimePickerDialog(requireContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+
+
         picker = MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_24H)
             .setHour(24)
@@ -126,7 +126,6 @@ class NotificationFragment : Fragment() {
             .build()
         picker.show(requireFragmentManager(), "SHOW")
 
-
         picker.addOnPositiveButtonClickListener {
 
             calendar = Calendar.getInstance()
@@ -134,7 +133,15 @@ class NotificationFragment : Fragment() {
             calendar[Calendar.MINUTE] = picker.minute
             calendar[Calendar.SECOND] = 0
             calendar[Calendar.MILLISECOND] = 0
-
+            binding.etDate.setText(SimpleDateFormat("HH:mm").format(calendar.time).toString())
         }
+
     }
+
+    companion object {
+        const val TEXT = "TEXT"
+        const val TITLE = "TITLE"
+    }
+
+
 }

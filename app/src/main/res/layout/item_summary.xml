@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        tools:listitem="@layout/item_currency_summary"/>
 
     <TextView
         android:id="@+id/text_title"
@@ -29,36 +30,71 @@
         android:text="@string/you_spent"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/chip_date_range"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@+id/date_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_date_range"
+<!--    <com.google.android.material.chip.Chip-->
+<!--        android:id="@+id/chip_date_range"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        app:chipIconTint="@color/white"-->
+<!--        app:chipIcon="@drawable/ic_arrow_drop_down_24dp"-->
+<!--        app:chipIconEnabled="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/text_title"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/text_title"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/text_title"-->
+<!--        tools:text="All time" />-->
+
+    <Spinner
+        android:id="@+id/date_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:chipIconTint="@color/white"
-        app:chipIcon="@drawable/ic_arrow_drop_down_24dp"
-        app:chipIconEnabled="true"
         app:layout_constraintBottom_toBottomOf="@+id/text_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_title"
         app:layout_constraintTop_toTopOf="@+id/text_title"
-        tools:text="All time" />
+        tools:text="All time"/>
 
-    <include
-        android:id="@+id/rv_total_expense"
-        layout="@layout/item_currency_summary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/recycler_view_amount_and_currency"
-        app:layout_constraintEnd_toEndOf="@id/recycler_view_amount_and_currency"
-        app:layout_constraintStart_toStartOf="@id/recycler_view_amount_and_currency"
-        app:layout_constraintTop_toTopOf="@id/recycler_view_amount_and_currency">
-    </include>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/date_range"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/text_title"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/text_title"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/text_title">-->
+
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/date"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="@color/green"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:background="@color/gray"-->
+<!--            android:inputType="none"-->
+<!--            android:textStyle="bold"-->
+<!--            android:hint="date range"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            tools:text="All time" />-->
+
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    <include-->
+<!--        android:id="@+id/rv_total_expense"-->
+<!--        layout="@layout/item_currency_summary"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/recycler_view_amount_and_currency"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/recycler_view_amount_and_currency"-->
+<!--        app:layout_constraintStart_toStartOf="@id/recycler_view_amount_and_currency"-->
+<!--        app:layout_constraintTop_toTopOf="@id/recycler_view_amount_and_currency">-->
+<!--    </include>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

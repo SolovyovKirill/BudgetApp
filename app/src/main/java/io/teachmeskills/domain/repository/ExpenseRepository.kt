@@ -19,4 +19,6 @@ interface ExpenseRepository {
 
     fun getExpenseById(id: Int): Flow<ExpenseEntity>
 
+    suspend fun getExpenseByCreated(date1: Long, date2: Long) : List<ExpenseEntity>
+
 }

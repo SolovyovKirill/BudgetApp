@@ -1,5 +1,13 @@
 <resources>
 
+    <string-array name="dateRange">
+        <item>Today</item>
+        <item>This week</item>
+        <item>This month</item>
+        <item>All time</item>
+    </string-array>
+
+
     <string-array name="tags_expenses">
         <item>Transport</item>
         <item>Food</item>
@@ -62,5 +70,10 @@
 
     <!-- Shared Preferences -->
     <string name="key_date_range" translatable="false">date_range</string>
+    <string name="hint_name">Name</string>
+    <string name="hind_symbol">Symbol</string>
+    <string name="text_hint">Text</string>
+    <string name="notification2">Notification</string>
+    <string name="app_name">Budget</string>
 
 </resources>

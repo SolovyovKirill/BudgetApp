@@ -24,4 +24,9 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM expenses WHERE id = :id")
     fun getExpenseById(id: Int) : Flow<ExpenseEntity>
+
+    @Query("SELECT * FROM expenses WHERE created BETWEEN :date1 AND :date2")
+    suspend fun getExpenseByCreated(date1: Long, date2: Long): List<ExpenseEntity>
+
+    // SELECT * FORM expenses WHERE expense.date > _date_1_ AND expense.date < _date_2_
 }

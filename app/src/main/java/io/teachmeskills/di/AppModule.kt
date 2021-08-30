@@ -5,6 +5,8 @@ import io.teachmeskills.data.repository.ExpenseRepositoryImpl
 import io.teachmeskills.domain.repository.ExpenseRepository
 import io.teachmeskills.domain.usecase.deleteexpense.DeleteExpenseUseCase
 import io.teachmeskills.domain.usecase.deleteexpense.DeleteExpenseUseCaseImpl
+import io.teachmeskills.domain.usecase.getexpensebycreated.GetExpenseByCreated
+import io.teachmeskills.domain.usecase.getexpensebycreated.GetExpenseByCreatedImpl
 import io.teachmeskills.domain.usecase.getexpensebyid.GetExpenseByIdUseCase
 import io.teachmeskills.domain.usecase.getexpensebyid.GetExpenseByIdUseCaseImpl
 import io.teachmeskills.domain.usecase.getexpenselist.GetExpenseListUseCase
@@ -15,10 +17,6 @@ import io.teachmeskills.domain.usecase.insertexpense.InsertExpenseUseCase
 import io.teachmeskills.domain.usecase.insertexpense.InsertExpenseUseCaseImpl
 import io.teachmeskills.domain.usecase.updateexpense.UpdateExpenseUseCase
 import io.teachmeskills.domain.usecase.updateexpense.UpdateExpenseUseCaseImpl
-import io.teachmeskills.presentation.viewmodel.addexpense.AddExpenseFragmentViewModel
-import io.teachmeskills.presentation.viewmodel.detailexpens.DetailExpenseFragmentViewModel
-import io.teachmeskills.presentation.viewmodel.editexpense.EditExpenseViewModel
-import io.teachmeskills.presentation.viewmodel.main.MainFragmentViewModel
 import io.teachmeskills.presentation.viewmodel.ExpenseViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -59,21 +57,11 @@ val koinModuleApp = module {
         GetExpenseListUseCase1Impl(get())
     }
 
-    factory {
-        AddExpenseFragmentViewModel(get(), get())
+    single<GetExpenseByCreated> {
+        GetExpenseByCreatedImpl(get())
     }
 
     factory {
-        MainFragmentViewModel(get(), get(), get())
-    }
-    factory {
-        DetailExpenseFragmentViewModel(get(), get(), get())
-    }
-    factory {
-        EditExpenseViewModel(get())
-    }
-
-    factory {
-        ExpenseViewModel(get(),get(),get(),get(),get(),get())
+        ExpenseViewModel(get(),get(),get(),get(),get(),get(), get())
     }
 }

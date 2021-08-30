@@ -1,14 +1,10 @@
-package io.teachmeskills.notification
+package io.teachmeskills.presentation.view.notification
 
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.provider.Settings
-import androidx.core.content.getSystemService
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
 class NotificationActionService : Service(), KoinComponent {

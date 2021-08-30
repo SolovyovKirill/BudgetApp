@@ -29,4 +29,8 @@ class ExpenseRepositoryImpl(
     override fun getExpenseById(id: Int): Flow<ExpenseEntity> =
         expenseDao.getExpenseById(id)
 
+    override suspend fun getExpenseByCreated(date1: Long, date2: Long): List<ExpenseEntity> =
+        expenseDao.getExpenseByCreated(date1, date2)
+
+
 }

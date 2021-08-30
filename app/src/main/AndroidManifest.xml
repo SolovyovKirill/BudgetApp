@@ -9,9 +9,9 @@
         android:usesCleartextTraffic="true"
         android:name="io.teachmeskills.ExpensesApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_free_icon_finances_2167853"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_free_icon_finances_2167853"
         android:supportsRtl="true"
         android:theme="@style/Theme.AccountingOfFinances"
         >
@@ -25,9 +25,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="io.teachmeskills.notification.NotificationReceiver"/>
+        <receiver android:name="io.teachmeskills.presentation.view.notification.NotificationReceiver"/>
 
-        <service android:name="io.teachmeskills.notification.NotificationActionService"/>
+        <service android:name="io.teachmeskills.presentation.view.notification.NotificationActionService"/>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import io.teachmeskills.an03onl_accountingoffinancesapp.R
 import io.teachmeskills.an03onl_accountingoffinancesapp.databinding.FragmentAddExpenseBinding
 import io.teachmeskills.data.database.entity.ExpenseEntity
@@ -22,7 +23,6 @@ import java.util.*
 class AddExpenseFragment : Fragment() {
 
     private lateinit var binding: FragmentAddExpenseBinding
-    //    private val viewModel: AddExpenseFragmentViewModel by viewModel()
     private val viewModel: ExpenseViewModel by viewModel()
 
     override fun onCreateView(
@@ -48,27 +48,27 @@ class AddExpenseFragment : Fragment() {
         with(binding) {
 
             btnSaveExpense.setOnClickListener {
-                binding.layoutContainer.apply {
+                binding.apply {
                     val (title, currency, amount, tag, date, note) = getExpenseContent()
-
                     when {
                         title.isEmpty() -> {
-                            this.et_title.error = "Title must note be empty"
+                            this.etTitle.error = "Title must note be empty"
+
                         }
                         currency.isEmpty() -> {
                             this.currency.error = "Currency must note be empty"
                         }
                         amount.isNaN() -> {
-                            this.et_amount.error = "Amount must note be empty"
+                            this.etAmount.error = "Amount must note be empty"
                         }
                         tag.isEmpty() -> {
-                            this.tv_tag_expense.error = "Tag must note be empty"
+                            this.tvTagExpense.error = "Tag must note be empty"
                         }
                         date.isEmpty() -> {
-                            this.tv_date.error = "Date must note be empty"
+                            this.tvDate.error = "Date must note be empty"
                         }
                         note.isEmpty() -> {
-                            this.et_notes.error = "Note must note be empty"
+                            this.etNotes.error = "Note must note be empty"
                         }
                         else -> {
                             viewModel.insertExpense(getExpenseContent()).run {
@@ -78,7 +78,7 @@ class AddExpenseFragment : Fragment() {
                                     Toast.LENGTH_LONG
                                 ).show()
 
-                                findNavController().popBackStack()
+                                findNavController().navigate(R.id.action_addExpenseFragment_to_mainFragment)
                             }
                         }
                     }
@@ -88,13 +88,13 @@ class AddExpenseFragment : Fragment() {
         }
     }
 
-    private fun getExpenseContent(): ExpenseEntity = binding.layoutContainer.let {
-        val title = it.et_title.text.toString()
-        val amount = it.et_amount.text.toString().toDouble()
+    private fun getExpenseContent(): ExpenseEntity = binding.let {
+        val title = it.etTitle.text.toString()
         val currency = it.currency.text.toString()
-        val tag = it.tv_tag_expense.text.toString()
-        val date = it.tv_date.text.toString()
-        val note = it.et_notes.text.toString()
+        val amount = parseDouble(it.etAmount.text.toString())
+        val tag = it.tvTagExpense.text.toString()
+        val date = it.tvDate.text.toString()
+        val note = it.etNotes.text.toString()
 
         return ExpenseEntity(title, currency, amount, tag, date, note)
     }
@@ -142,7 +142,24 @@ class AddExpenseFragment : Fragment() {
     }
 
     companion object {
-        val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateFormatter = SimpleDateFormat("EEE, MMM d, ''yy", Locale.getDefault())
+
+        private fun parseDouble(value: String?): Double {
+            return if (value == null || value.isEmpty()) Double.NaN else value.toDouble()
+        }
+
     }
 
+    // option 1
+    // val date = ...
+    // date.day
+    // date.month
+    // val current_date = ...
+    // if()
+
+    // option 2
+    // val millis = ...
+    // val millis_day_start = ...
+    // val millis_day_end = ...
+    // if (millis > millis_day_start && millis < millis_day_end) -> true
 }

@@ -43,10 +43,6 @@ class DetailExpenseFragment : Fragment() {
         observeExpense()
         deleteExpense(expenseEntity!!)
 
-//        setFragmentResultListener("") { key, bundle ->
-//
-//        }
-//        setFragmentResult("requestKey", bundleOf("bundleKey" to "bundle"))
     }
 
     private fun getExpense(id: Int) {
@@ -84,6 +80,7 @@ class DetailExpenseFragment : Fragment() {
         tv_date.text = expenseEntity.date
         tv_tag.text = expenseEntity.tag
         tv_notes.text = expenseEntity.note
+        tv_created.text = expenseEntity.createdDateFormat
 
         binding.btnEditExpense.setOnClickListener {
             val bundle = Bundle().apply {

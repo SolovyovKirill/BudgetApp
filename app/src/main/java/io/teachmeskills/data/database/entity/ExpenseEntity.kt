@@ -5,7 +5,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
+import java.text.DateFormat
+import java.util.*
 
 @Parcelize
 @Entity(tableName = "expenses")
@@ -23,10 +24,17 @@ data class ExpenseEntity(
     var date: String,
     @ColumnInfo(name="note")
     var note: String,
+    @ColumnInfo(name="created")
+    var created: Long = System.currentTimeMillis(),
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     var id: Int = 0,
 
-):Parcelable{
+    ):Parcelable{
+
+    val createdDateFormat: String
+        get() = DateFormat.getDateTimeInstance().format(created) // Date Format: Aug 22, 2021, 11:30 PM
 
 }
+
+// SELECT * FORM expenses WHERE expense.date > _date_1_ AND expense.date < _date_2_

@@ -1,28 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_set_time"
+    <TextView
+        android:id="@+id/tv_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="set time notification"
+        android:gravity="center"
+        android:text="@string/notification2"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_set_not"
-        android:layout_marginTop="24dp"
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_title_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="set notification"
+        android:layout_marginTop="32dp"
+        android:hint="@string/title_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_notification"  />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_text_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/text_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_time" />
+        app:layout_constraintTop_toBottomOf="@+id/et_title_notification" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="none"
+        android:focusable="false"
+        android:gravity="center"
+        android:hint="14:00 "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_text_notification" />
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btn_set_time"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/green"-->
+<!--        android:text="set time notification"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_date" />-->
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_set_not"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_add_notification"
+        android:tint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
